@@ -1,0 +1,68 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path":"pages/file/file",
+			"style": {
+				"enablePullDownRefresh":true,
+				"backgroundTextStyle":"light"
+			}
+		},
+		{
+			"path":"pages/photo/photo"
+		},
+		{
+			"path":"pages/login/login",
+			"style":{
+				"navigationBarTitleText":"登录"
+			}
+		},
+		{
+			"path":"pages/search/search"
+		},
+		{
+			"path":"pages/collection/collection"
+		},
+		{
+			"path":"pages/registered/registered"
+		},
+		{
+			"path":"pages/transmissionList/transmissionList"
+		},
+		{
+			"path":"pages/userinfo/userinfo"
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "space",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle":"custom"
+	},
+	"tabBar":{
+		"color":"#8d8d8d",
+		"selectedColor":"#595bb3",
+		"backgroundColor":"#FFFFFF",
+		"borderStyle":"black",
+		"list":[
+		{
+			"pagePath":"pages/file/file",
+			"iconPath":"static/tabs/icon-folder.png",
+			"selectedIconPath":"static/tabs/icon-folder-active.png",
+			"text":"文件"
+		},
+		{
+			"pagePath":"pages/photo/photo",
+			"iconPath":"static/tabs/icon-photo.png",
+			"selectedIconPath":"static/tabs/icon-photo-active.png",
+			"text":"图片"
+		}
+		/* {
+			"pagePath":"pages/my/my",
+			"iconPath":"static/tabs/icon-my.png",
+			"selectedIconPath":"static/tabs/icon-my-active.png",
+			"text":"我的"
+		} */
+		]
+	}
+}
