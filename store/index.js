@@ -16,6 +16,8 @@ const store = new Vuex.Store({
 		userInfo: getItem(USER_KEY),
 		// 用于判断文件页面是否需要重新读取数据
 		isFileRequest: false,
+		// 局部更新
+		isFileRequestPart: false,
 		// 上传进度
 		progress: 0,
 		// 已经上传的数据长度
@@ -56,6 +58,9 @@ const store = new Vuex.Store({
 		},
 		setFileRequest(state, data) {
 			state.isFileRequest = data
+		},
+		setFileRequestPart(state, data) {
+			state.isFileRequestPart = data
 		},
 		setProgress(state, data) {
 			state.progress = data

@@ -126,7 +126,7 @@
         "devServer" : {
             "proxy" : {
                 "/api" : {
-                    "target" : "http://120.79.189.150:8001",
+                    "target" : "http://47.106.217.172:8001",
                     "changeOrigin" : true,
                     "secure" : false,
                     "pathRewrite" : {

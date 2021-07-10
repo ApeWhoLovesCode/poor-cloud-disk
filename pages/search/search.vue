@@ -13,12 +13,12 @@
 				@confirm="getFileInfo"
 				@input="inputChange"
 				/>
-				<text v-show="searchContent" class="iconfont icon-close" @click="inputClear"></text>
+				<text v-if="searchContent" class="iconfont icon-close" @click="inputClear"></text>
 			</view>
 			<view class="channel" @click="back()">取消</view>
 		</view>
 		<!-- 搜索分类推荐 -->
-		<view v-show="searchContent.length === 0 && !haveResult" class="search-main" @click="Undeveloped" :style="{marginTop: (systemBarHeight + 50) + 'px'}">
+		<view v-if="searchContent.length === 0 && !haveResult" class="search-main" @click="Undeveloped" :style="{marginTop: (systemBarHeight + 50) + 'px'}">
 			<view class="s-m-item">
 				<text class="iconfont icon-tupian"></text>
 				<text>图片</text>
@@ -38,7 +38,7 @@
 		</view>
 		<view v-if="haveResult" class="search-content" :style="{marginTop: (systemBarHeight + 50) + 'px'}">
 			<!-- 进入文件夹后的返回nav -->
-			<view class="not-root-dir" v-show="currentDir !== '/root'">
+			<view class="not-root-dir" v-if="currentDir !== '/root'">
 				<text class="iconfont icon-arrow-left-bold" @click="backParentDir"></text>
 				<text class="not-root-dir-name">{{currentFolderName}}</text>
 				<text class="not-root-dir-placeholder"></text>
@@ -56,7 +56,7 @@
 			</view>
 		</view>
 		<!-- v-if="(!haveResult) && (searchContent.length !== 0)"  -->
-		<view v-show="!haveResult && searchContent.length !== 0" class="not-search" :style="{marginTop: (systemBarHeight + 50) + 'px'}">
+		<view v-if="!haveResult && searchContent.length !== 0" class="not-search" :style="{marginTop: (systemBarHeight + 50) + 'px'}">
 			云盘中没有找到包含“{{searchContent}}”的内容
 		</view>
 		

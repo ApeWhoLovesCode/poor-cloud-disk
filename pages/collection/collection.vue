@@ -27,6 +27,7 @@
 				@fileItemClick="fileItemClick"
 				@detailClick="detailClick"
 			/>
+				<!-- @selectFileitemClick="selectFileitemClick" -->
 		</view>
 		
 		<!-- 选择文件的底部 nav -->

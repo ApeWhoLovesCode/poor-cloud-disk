@@ -1,7 +1,7 @@
 <template>
 	<view class="rename" v-if="renameFile">
 		<ming-pop class="pops" ref="renamepop" direction="up" :is_close="false" :is_mask="true" :width="100">
-			<view class="rename-header">
+			<view class="rename-header"  :style="{marginTop: systemBarHeight + 'px'}">
 				<view class="channel" @click="popClose">取消</view>
 				<view class="rename-title">重命名</view>
 				<view class="done" @click="done">完成</view>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
 	name: 'rename',
 	props: {
@@ -56,6 +57,7 @@ export default {
 		};
 	},
 	computed: {
+		...mapState(['systemBarHeight']),
 		videoUrl() {
 			if(this.videoList.length !== 0 && this.renameFile.filetype === 'video') {
 				let arr = this.videoList.find((item) => item.videoId === this.renameFile.videoId)

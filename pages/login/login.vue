@@ -44,9 +44,9 @@
 		data() {
 			return {
 				// 账号
-				mobile: "15627792695",
+				mobile: "",
 				// 密码
-				password: "123456"
+				password: ""
 			}
 		},
 		onLoad() {
@@ -74,7 +74,6 @@
 						password: this.password
 					}
 				})
-				console.log(data)
 				setItem('token', data.data.token)
 				let token = getItem('token')
 				// 将用户登录信息放到 vuex 容器中

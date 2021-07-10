@@ -31,7 +31,8 @@ export const mixin = {
 	},
 	computed: {
 		// 映射 vuex 中的 userInfo
-		...mapState(['systemBarHeight','userInfo', 'isFileRequest', 'downProgress']),
+		...mapState(['systemBarHeight','userInfo', 'isFileRequest',
+		 'isFileRequestPart', 'downProgress',]),
 		// 是否全选了
 		isSelectAll() {
 			// 找到一个没被选中的, 就是取反变为false  性能好点不用全部遍历
@@ -62,6 +63,16 @@ export const mixin = {
 		// musicMaskClick() {
 		// 	this.$zaudio.stop()
 		// },
+		
+		// 选择的文件点击了
+		selectFileitemClick(fileId) {
+			this.fileList.forEach(item => {
+				if (item.id === fileId) {
+					item.checked = !item.checked
+					console.log(item.checked)
+				}
+			})
+		},
 		// 点击了文件对象
 		fileItemClick(fileItem) {
 			const type = fileItem.filetype
@@ -492,8 +503,6 @@ export const mixin = {
 				}
 			})
 
-			// 告诉 file 页面要重新请求数据
-			// this.$store.commit('setFileRequest', true)
 		},
 
 		// 全选
@@ -538,7 +547,7 @@ export const mixin = {
 				time: '1000'
 			})
 			// 告诉 file 页面要重新请求数据
-			this.$store.commit('setFileRequest', true)
+			this.$store.commit('setFileRequestPart', true)
 			
 			// 搜索页面只需重新请求文件夹列表
 			if(this.belongPage === 'search') {

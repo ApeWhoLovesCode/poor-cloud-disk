@@ -70,6 +70,13 @@ export default {
 			});
 		}
 	},
+	onShow() {
+		// 在vuex中 用于判断是否需要重新网络请求
+		if(this.isFileRequest) {
+			this.getPhoto()
+			this.$store.commit('setFileRequest', false)
+		}
+	},
 	watch: {},
 	created() {},
 	methods: {
@@ -87,6 +94,9 @@ export default {
 			let allPhoto = allList.filter(item => item.filetype === 'image');
 			// console.log(allPhoto);
 			
+			if(this.allPhotoList.length !== 0) {
+				this.allPhotoList = []
+			}
 			allPhoto.map(item => {
 				this.allPhotoList.unshift(item.url)
 			})

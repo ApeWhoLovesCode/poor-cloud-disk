@@ -13,7 +13,7 @@
 		
 		<view class="file-wrap" :style="{marginTop: systemBarHeight + 'px'}">
 			<!-- 进入文件夹后的返回nav -->
-			<view class="not-root-dir" v-show="currentDir !== '/root'">
+			<view class="not-root-dir" v-if="currentDir !== '/root'">
 				<text class="iconfont icon-arrow-left-bold" @click="backParentDir"></text>
 				<text class="not-root-dir-name">{{currentFolderName}}</text>
 				<text class="not-root-dir-placeholder"></text>
@@ -30,6 +30,7 @@
 					@detailClick="detailClick"
 					@fileItemClick="fileItemClick"
 				/>
+					<!-- @selectFileitemClick="selectFileitemClick" -->
 			</view>
 			
 			<!-- 横向显示 -->
@@ -43,6 +44,7 @@
 					@fileItemClick="fileItemClick"
 					@detailClick="detailClick"
 					/>
+					<!-- @selectFileitemClick="selectFileitemClick" -->
 			</view>
 			
 			<!-- 选择状态下占位，防止被下面的选择 nav 挡住 -->
@@ -198,6 +200,12 @@ export default {
 		}
 	},
 	onShow() {
+		// 局部更新
+		if(this.isFileRequestPart) {
+			this.getFileInfo()
+			this.$store.commit('setFileRequestPart', false)
+			return
+		}
 		// 在vuex中 用于判断是否需要重新网络请求
 		if(this.isFileRequest) {
 			this.getUserDir()
@@ -207,19 +215,6 @@ export default {
 	},
 	mounted() {
 		this.getUserDir()
-		//   const that = this
-		// 	var webview = plus.webview.currentWebview();//获取窗口
-		// 	plus.key.addEventListener('backbutton', function() {//监听返回事件
-		// 	webview.canBack(function(e) {
-		// 		if (e.canBack) {
-		// 			console.log('返回上一页')
-		// 			webview.back(); //返回上一页  
-		// 		} else {
-		// 			console.log('关闭应用')
-		// 			webview.close(); //关闭应用  
-		// 		}
-		// 	})
-		// });
 	},
 	// 监听页面滚动
 	onPageScroll(e) {
@@ -231,7 +226,7 @@ export default {
 	},
 	// 监听页面下拉刷新
 	onPullDownRefresh() {
-		this.getUserDir()
+		this.getFileInfo()
 	  setTimeout(function () {
 	    uni.stopPullDownRefresh();
 	  }, 1000);
@@ -318,8 +313,6 @@ export default {
 				this.videoList = videodata.data.data.urlList
 			}
 			
-			// 已经请求过数据了，页面重新显示时不用再请求数据
-			this.$store.commit('setFileRequest', false)
 		},
 		
 		
@@ -388,7 +381,9 @@ export default {
 			const romdata = await this.$myRequest({
 				url: `/educenter/member/getMemberInfo/${this.userInfo.id}`
 			})
+			
 			this.$store.commit('setUserInfo', romdata.data.data.member)
+			this.$store.commit('setFileRequestPart', true)
 		},
 		// 跳转到收藏夹页面
 		collectionClick() {

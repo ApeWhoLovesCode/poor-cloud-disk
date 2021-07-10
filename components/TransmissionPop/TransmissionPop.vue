@@ -163,7 +163,7 @@ export default {
 			 */
 			const uploadProgress = uni.uploadFile({
 				// url: `/api/eduoss/fileoss/upload/${this.userInfo.id}?catalogue=${this.currentDir}`,
-				url: `http://120.79.189.150:8001/eduoss/fileoss/upload/${this.userInfo.id}?catalogue=${this.currentDir}`,
+				url: `http://47.106.217.172:8001/eduoss/fileoss/upload/${this.userInfo.id}?catalogue=${this.currentDir}`,
 				filePath,
 				name: 'file',
 				success: async (res) => {

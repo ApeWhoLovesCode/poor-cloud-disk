@@ -91,7 +91,10 @@ export default {
 			if(!this.isSelect) {
 				this.$emit('fileItemClick', this.fileItem)
 			} else {
+				// 原方法
 				this.fileItem.checked = !this.fileItem.checked
+				// 解决小程序不能修改props属性的笨方法
+				// this.$emit('selectFileitemClick', this.fileItem.id)
 			}
 		}
 	}

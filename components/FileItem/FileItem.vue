@@ -30,12 +30,12 @@
 			
 		</view>
 		<!-- 文件的操作 -->
-		<!-- <view class="folder-operating" v-if="fileItem.filetype !== 'folder'"> -->
+		<!-- :class="fileItem.checked ? 'selected' : ''" -->
 		<view class="folder-operating">
 			<text
 			v-if="isSelect && fileItem.filetype !== 'folder'" 
 			class="file-select iconfont icon-select" 
-			:class="fileItem.checked ? 'selected' : ''"
+			:class="{'selected': fileItem.checked}"
 			@click="fileItemClick"
 			></text>
 			<text v-if="!isSelect" class="file-detail iconfont icon-elipsis" @click="$emit('detailClick', fileItem)"></text>
@@ -70,7 +70,8 @@ export default {
 		}
 	},
 	data() {
-		return {};
+		return {
+		};
 	},
 	computed: {
 		videoUrl() {
@@ -91,7 +92,10 @@ export default {
 				this.$emit('fileItemClick', this.fileItem)
 			} else {
 				if(this.fileItem.filetype !== 'folder') {
+					// 原方法
 					this.fileItem.checked = !this.fileItem.checked
+					// 解决小程序不能修改props属性的笨方法
+					// this.$emit('selectFileitemClick', this.fileItem.id)
 				}
 			}
 		}
@@ -100,6 +104,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+	.background{
+		background-color: #007AFF;
+	}
 	.file-item {
 		text-align: center;
 		.file-img {

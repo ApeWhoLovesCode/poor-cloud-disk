@@ -58,7 +58,6 @@ export default {
 			const { data } = await this.$myRequest({
 				url: `/educenter/member/getMemberInfo/${this.userInfo.id}`
 			});
-			// console.log(data.data)
 			this.avatar = data.data.member.avatar
 			this.userName = data.data.member.nickname;
 			this.$store.commit('setUserInfo', data.data.member)
@@ -78,7 +77,7 @@ export default {
 		// 处理头像的网络请求
 		async networkUpload(filePath) {
 			uni.uploadFile({
-				url: 'http://120.79.189.150:8001/eduoss/fileoss/uploadFileAvatar',
+				url: 'http://47.106.217.172:8001/eduoss/fileoss/uploadFileAvatar',
 				// url: '/api/eduoss/fileoss/uploadFileAvatar',
 				filePath,
 				name: 'file',

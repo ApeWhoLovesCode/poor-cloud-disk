@@ -1,6 +1,6 @@
 import {getItem} from './storage.js'
 
-const BASE_URL = 'http://120.79.189.150:8001'
+const BASE_URL = 'http://47.106.217.172:8001'
 // const BASE_URL = '/api'	// 浏览器调试解决跨域
 // options 就是调用这个方法的参数 就是 {}
 export const myRequest = (options) => {

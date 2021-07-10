@@ -1,7 +1,7 @@
 <template>
   <view class='MyPop' v-if="userInfo">
 		<ming-pop class="pops" ref="mypop" direction="left" :is_close="false" :is_mask="true" :width="80">
-			<view class="user-info" @click="toUserInfo">
+			<view class="user-info" @click="toUserInfo" :style="{marginTop: systemBarHeight + 'px'}">
 				<view class="user-avatar">
 					<image v-if="userInfo.avatar" :src="userInfo.avatar" mode="aspectFill"></image>
 					<text v-else>?</text>
@@ -61,7 +61,7 @@ export default {
     };
   },
   computed: {
-		...mapState(['userInfo', 'fileSize']),
+		...mapState(['userInfo', 'fileSize', 'systemBarHeight']),
 		// 百分比
 		percentage() {
 			return (this.userInfo.neicun / 1073741824 * 100).toFixed(2)
